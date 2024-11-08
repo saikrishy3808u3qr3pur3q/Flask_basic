@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import pandas as pd
 import joblib
+import os
 
 # Load models and data files
 try:
@@ -127,4 +128,5 @@ def recommend():
     })
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Use the PORT environment variable or default to 5000
+    app.run(host="0.0.0.0", port=port)  # Bind to all interfaces
